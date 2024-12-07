@@ -4,7 +4,17 @@ import Spinners from './Spinners';
 import PropTypes from 'prop-types'
 
 export class News extends Component {
+  static defaultProps = {
+    country: 'in',
+    pageSize:8,
+    category: 'general'
+  }
 
+    static propTypes = {
+      country:PropTypes.string,
+      pageSize:PropTypes.number,
+      category: PropTypes.string
+    }
     articles = [
         {
           "source": {
@@ -373,15 +383,3 @@ export class News extends Component {
 }
 
 export default News
-
-News.defaultProps = {
-  country: 'in',
-  pageSize: 8,
-  category: 'general',
-}
-
-News.propTypes = {
-    country: PropTypes.string,
-    pageSize: PropTypes.number,
-    category: PropTypes.string,
-}

@@ -4,7 +4,17 @@ import Spinners from './Spinners';
 import PropTypes from 'prop-types'
 
 export class News extends Component {
+  static defaultProps = {
+    country: 'in',
+    pageSize:8,
+    category: 'general'
+  }
 
+    static propTypes = {
+      country:PropTypes.string,
+      pageSize:PropTypes.number,
+      category: PropTypes.string
+    }
     articles = [
         {
           "source": {
@@ -268,9 +278,9 @@ export class News extends Component {
         }
       ]
 
-    // capitalizeFirstLetter = (string) =>{
-    //   return string.chatAt(0).toUpperCase() + string.slice(1);
-    // }  
+    capitalizeFirstLetter = (string) =>{
+      return string.chatAt(0).toUpperCase() + string.slice(1);
+    }  
     constructor(props){
         super(props);
         console.log("Hello I am constructor from news component");
@@ -280,7 +290,7 @@ export class News extends Component {
             loading:false,
             page:1,
         }
-        document.title = `${this.props.category} - NewsMonkey`;
+        document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewsMonkey`;
        }
 
     async updateNews(){
@@ -351,7 +361,7 @@ export class News extends Component {
       <>
       {this.state.loading && <Spinners/>}
       <div className="container my-2">
-        <h2 className="text-center">NewsMonkey - Top Headlines on {this.props.category}</h2>
+        <h2 className="text-center">NewsMonkey - Top Headlines on {this.capitalizeFirstLetter(this.props.category)}</h2>
         
         <div className="row">
         {!this.state.loading && this.state.articles.map((element)=>{
@@ -373,15 +383,3 @@ export class News extends Component {
 }
 
 export default News
-
-News.defaultProps = {
-  country: 'in',
-  pageSize: 8,
-  category: 'general',
-}
-
-News.propTypes = {
-    country: PropTypes.string,
-    pageSize: PropTypes.number,
-    category: PropTypes.string,
-}

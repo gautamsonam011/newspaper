@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import NewsItem from './NewsItem'
 import Spinners from './Spinners';
 import PropTypes from 'prop-types'
 
 export class News extends Component {
+    // const [articles, setArticles] = useState([])
+    // const [loading, setLoading] = useState(true)
+    // const [page, setPage] = useState(1)
+    // const [totalResults, setTotalResults] = useState(0)
 
     articles = [
         {
