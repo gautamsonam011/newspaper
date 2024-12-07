@@ -285,14 +285,15 @@ export class News extends Component {
             articles: [],
             loading:false,
             page:1,
+           
+
         }
-        document.title = this.props.category;
        }
 
     async updateNews(){
       const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=4ed330cbd0974333a944910a0fa0ea4d&page=${this.state.page}&pageSize=${this.props.pageSize}`;
       this.setState({loading:true});
-      let data = await fetch(this.articles);
+      let data = await fetch(articles);
       let parseData = await data.json();
       console.log(parseData);
       this.setState({

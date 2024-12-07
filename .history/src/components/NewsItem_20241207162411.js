@@ -9,7 +9,7 @@ export class NewsItem extends Component {
 
 
     render() {
-        let {title, description, urlImage, newsUrl, author, date} = this.props;
+        let {title, description, urlImage, newsUrl, author, date, source} = this.props;
         return (
             <>
             <div>
