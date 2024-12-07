@@ -272,7 +272,6 @@ export class News extends Component {
             articles: this.articles,
             loading:false,
             page:1,
-            pageSize:20
 
         }
        }
@@ -301,10 +300,7 @@ export class News extends Component {
 
     handleNextClick = async() =>{
       console.log("Next");
-      if (this.state.page + 1 > Math.ceil(this.state.totalResults/20)){
-
-      }
-      else{
+      if (this.state.totalResults/pageSize)
       let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=4ed330cbd0974333a944910a0fa0ea4d&page=${this.state.page + 1}&pageSize=20`;
         let data = await fetch(url);
         let parseData = await data.json();
@@ -313,15 +309,14 @@ export class News extends Component {
       this.setState({
         page:this.state.page + 1,
         articles: parseData.articles
-      })}
-
+      })
     }
   render() {
     console.log("Hello I am render.")
     return (
       <>
       <div className="container my-2">
-        <h2 className="text-center">NewsMonkey</h2>
+        <h2>NewsMonkey</h2>
         
         <div className="row">
         {this.state.articles.map((element)=>{
@@ -334,8 +329,8 @@ export class News extends Component {
       </div>
 
       <div className='container d-flex justify-content-between'>
-        <button disabled={this.state.page<=1} type="button" className="btn btn-sm btn-primary" onClick={this.handlePrevClick}>&larr; Previous</button>
-        <button disabled={this.state.page +1 > Math.ceil(this.state.totalResults/20)} type="button" className="btn btn-sm btn-primary" onClick={this.handleNextClick}> Next &rarr;</button>
+        <button type="button" className="btn btn-sm btn-primary" onClick={this.handlePrevClick} disbled={this.state.page<=1}>&larr; Previous</button>
+        <button type="button" className="btn btn-sm btn-primary" onClick={this.handleNextClick}> Next &rarr;</button>
       </div>
       </>
     )
