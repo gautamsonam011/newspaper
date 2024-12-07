@@ -304,20 +304,18 @@ export class News extends Component {
 
     handleNextClick = async() =>{
       console.log("Next");
-      if (this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)){
-
-      }
-      else{
-      let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=4ed330cbd0974333a944910a0fa0ea4d&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+      if (!this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)){
+        let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=4ed330cbd0974333a944910a0fa0ea4d&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
         let parseData = await data.json();
         this.setState({loading:true});
 
-      this.setState({
+        this.setState({
         page:this.state.page + 1,
         articles: parseData.articles,
         loading:false
-      })}
+        })
+      }
 
     }
   render() {

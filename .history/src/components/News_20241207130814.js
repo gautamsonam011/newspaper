@@ -285,7 +285,7 @@ export class News extends Component {
         let data = await fetch(url);
         let parseData = await data.json();
         console.log(parseData);
-        this.setState({articles: parseData.articles, totalResults:parseData.totalResults, loading:false})
+        this.setState({articles: parseData.articles, totalResults:parseData.totalResults})
     }   
 
     handlePrevClick = async() =>{
@@ -329,7 +329,7 @@ export class News extends Component {
         <h2 className="text-center">NewsMonkey</h2>
         
         <div className="row">
-        {!this.state.loading && this.state.articles.map((element)=>{
+        {this.state.articles.map((element)=>{
             return <div className="col-md-3" key ={element.url}>
             <NewsItem  title={element.title?element.title.slice(0,45):" "} description={element.description?element.description.slice(0, 88): " "} urlImage={element.urlToImage} newsUrl={element.url} />
         </div>
